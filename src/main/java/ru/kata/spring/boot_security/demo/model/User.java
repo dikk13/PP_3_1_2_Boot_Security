@@ -12,7 +12,7 @@ public class User implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int id;
+   private long id;
 
    @Column(name = "user_name", nullable = false, length = 45)
    private String username;
@@ -37,7 +37,7 @@ public class User implements UserDetails {
       this.roles = roles;
    }
 
-   public int getId() {
+   public long getId() {
       return id;
    }
 
@@ -113,7 +113,7 @@ public class User implements UserDetails {
 
    @Override
    public int hashCode() {
-      int result = id/100;
+      int result = (int) (id/100);
       result = 31 * result + username.hashCode();
       result = 31 * result + email.hashCode();
       result = 31 * result + password.hashCode();
