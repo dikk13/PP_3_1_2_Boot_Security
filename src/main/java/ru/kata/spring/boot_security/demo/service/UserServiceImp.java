@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImp implements UserService{
@@ -77,6 +78,6 @@ public class UserServiceImp implements UserService{
 
    @Override
    public Set<Role> getRolesByIdArr(int[] idList) {
-       return new HashSet<>(roleRepository.findAllById((Iterable<Integer>) Arrays.asList(idList).stream().iterator()));
+      return roleRepository.findRolesByIdIn(Arrays.stream(idList).boxed().collect(Collectors.toList()));
    }
 }
